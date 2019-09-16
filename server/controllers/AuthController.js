@@ -28,7 +28,7 @@ export default class AuthController {
         }
         try {
             //CHANGE THE PASSWORD TO A HASHED PASSWORD
-            req.body.hash = _userService.generateHash(req.body.password)
+            req.body.hash = UserService.generateHash(req.body.password)
 
             //CREATE THE USER
             let user = await _userService.create(req.body)

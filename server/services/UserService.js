@@ -26,13 +26,12 @@ _schema.methods.validatePassword = function (password) {
   })
 }
 
-//statics are used to create Model methods
-_schema.statics.generateHash = function (password) {
-  return bcrypt.hashSync(password, SALT)
-}
-
 export default class UserService {
   get repository() {
     return mongoose.model('User', _schema)
+  }
+  //statics are used to create Model methods
+  static generateHash(password) {
+    return bcrypt.hashSync(password, SALT)
   }
 }
