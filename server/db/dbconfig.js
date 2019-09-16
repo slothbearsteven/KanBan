@@ -9,8 +9,7 @@ mongoose.connection.on('error', err => {
 })
 
 //TODO: ADD YOUR CONNECTION STRING!!!
-const connectionString = mongodb + srv://nathanielwheeler:!Wq_NqM*-o_BVkWa8Q4e@nathanscluster-dbzxo.gcp.mongodb.net/blogstr?retryWrites=true&w=majority
-
+const connectionString = "mongodb+srv://nathanielwheeler:Iat3b3OJKMhUMtPC@cluster0-0fosp.mongodb.net/test?retryWrites=true&w=majority"
 export default class DbContext {
   static async connect() {
     try {
