@@ -3,6 +3,7 @@ import ListService from './ListService'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
+// @ts-ignore
 let _listRepo = new ListService().repository
 
 let _schema = new Schema({
