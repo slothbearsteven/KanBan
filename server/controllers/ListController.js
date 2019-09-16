@@ -9,8 +9,8 @@ export default class ListController {
       .use(Authorize.authenticated)
       .get('/boards/:boardId', this.getByBoardId)
       .post('/boards/:boardId', this.create)
-      .put('/boards/:boardId', this.edit)
-      .delete('/boards/:boardId', this.delete)
+      .put('/boards/:boardId/:listId', this.edit)
+      .delete('/boards/:boardId/:listId', this.delete)
       .use(this.defaultRoute)
   }
 
@@ -20,16 +20,17 @@ export default class ListController {
 
   async getByBoardId(req, res, next) {
     try {
-      let data = await _listService.findOne({ _id: req.params.boardId, authorId: req.session.uid })
+      let data = await _listService.findOne({ boardId: req.params.boardId, authorId: req.session.uid })
       return res.send(data)
     } catch (error) { next(error) }
   }
 
   async create(req, res, next) {
     try {
-      req.body.authorId = req.session.uid
-      let data = await _listService.create(req.body)
-      return res.status(201).send(data)
+      if (req.body.authorId === req.session.uid) {
+        let data = await _listService.create(req.body)
+        return res.status(201).send(data)
+      }
     } catch (error) { next(error) }
   }
 
