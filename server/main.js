@@ -40,7 +40,9 @@ import BoardController from './controllers/BoardController'
 
 server.use('/api/boards', new BoardController().router)
 
+import ListController from './controllers/ListController'
 
+server.use('/api/boards/:boardId', new ListController().router)
 
 //Default Error Handler
 server.use((error, req, res, next) => {
