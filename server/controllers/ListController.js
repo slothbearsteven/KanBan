@@ -7,10 +7,10 @@ export default class ListController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-      .get('/:id', this.getByBoardId)
-      .post('', this.create)
-      .put('/:id', this.edit)
-      .delete('/:id', this.delete)
+      .get('/list/:id', this.getByBoardId)
+      .post('/list', this.create)
+      .put('/list/:id', this.edit)
+      .delete('/list/:id', this.delete)
       .use(this.defaultRoute)
   }
 
