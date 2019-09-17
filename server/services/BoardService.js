@@ -8,7 +8,7 @@ let _listRepo = new ListService().repository
 
 let _schema = new Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String, default: null },
   authorId: { type: ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
 
