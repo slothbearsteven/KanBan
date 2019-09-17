@@ -9,6 +9,7 @@ export default {
   data() {
     return {};
   },
+  props: [taskProp],
   computed: {},
   methods: {},
   components: {}
