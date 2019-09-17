@@ -1,11 +1,10 @@
-<template>
-  
-</template>
+<template></template>
 
 <script>
 export default {
-  name: 'List'
-}
+  name: "List",
+  props: ["listProp"]
+};
 </script>
 
 <style scoped>

@@ -1,10 +1,18 @@
 <template>
-  <div class="board">{{board.title}}</div>
+  <div class="board container">
+    <div class="row">{{board.title}}</div>
+    <div class="row">
+      <list v-for="list in lists" :listProp="list" :key="list.id" />
+    </div>
+  </div>
 </template>
 
 <script>
+import List from "../components/List";
+
 export default {
   name: "board",
+
   computed: {
     board() {
       return (
@@ -13,6 +21,9 @@ export default {
           title: "Loading..."
         }
       );
+    },
+    lists() {
+      return this.store.boards;
     }
   },
   props: ["boardId"]
