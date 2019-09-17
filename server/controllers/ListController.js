@@ -1,18 +1,20 @@
 import ListService from '../services/ListService'
 import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
+import TaskService from '../services/TaskService'
 
 let _listService = new ListService().repository
+let _taskService = new TaskService().repository
 
 //PUBLIC
 export default class ListController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-      .get('', this.getAll)
+      .get('/:id/tasks', this.getTasks)
       .post('', this.create)
       // .put('/boards/:boardId/:listId', this.edit)
-      // .delete('/boards/:boardId/:listId', this.delete)
+      .delete('/:id', this.delete)
       .use(this.defaultRoute)
   }
 
@@ -20,11 +22,11 @@ export default class ListController {
     next({ status: 404, message: 'No Such Route' })
   }
 
-  async getAll(req, res, next) {
+  async getTasks(req, res, next) {
     try {
-      let data = await _listService.find({ authorId: req.session.uid })
+      let data = await _taskService.find({ listId: req.params.id })
       return res.send(data)
-    } catch (err) { next(err) }
+    } catch (error) { next(error) }
   }
 
   async create(req, res, next) {
@@ -46,10 +48,16 @@ export default class ListController {
   //   } catch (error) { next(error) }
   // }
 
-  // async delete(req, res, next) {
-  //   try {
-  //     await _listService.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
-  //     return res.send("Successfully deleted")
-  //   } catch (error) { next(error) }
-  // }
+  async delete(req, res, next) {
+    try {
+      await _listService.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
+      return res.send("Successfully deleted")
+    } catch (error) { next(error) }
+  }
+
+
+
+
+
+
 }
