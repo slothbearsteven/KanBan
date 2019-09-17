@@ -24,7 +24,7 @@ export default class ListController {
 
   async getTasks(req, res, next) {
     try {
-      let data = await _taskService.find({ listId: req.params.id })
+      let data = await _taskService.find({ listId: req.params.id }).populate('listId').populate('authorId', 'name')
       return res.send(data)
     } catch (error) { next(error) }
   }
