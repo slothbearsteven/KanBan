@@ -100,8 +100,14 @@ export default new Vuex.Store({
         let res = await api.get('/boards/' + payload + '/lists')
         commit("setLists", res.data)
       } catch (error) { console.error(error) }
-    }
+    },
 
+    async addList({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post('/lists', payload)
+        dispatch('getLists')
+      } catch (error) { console.error(error) }
+    }
 
     //#endregion
   }
