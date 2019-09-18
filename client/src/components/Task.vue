@@ -1,5 +1,5 @@
 <template>
-  <div class="task"></div>
+  <div class="task">{{}}</div>
 </template>
 
 
