@@ -1,5 +1,5 @@
 <template>
-  <div class="task">{{}}</div>
+  <div class="task">{{taskProp.title}}</div>
 </template>
 
 
@@ -11,7 +11,13 @@ export default {
   },
   props: [taskProp],
   computed: {},
-  methods: {},
+  methods: {
+    
+    
+    // We need to pass this list's listId into the state delete method
+    // deleteList(list) {
+    //   this.$store.dispatch("deleteList", list);
+    // }},
   components: {}
 };
 </script>

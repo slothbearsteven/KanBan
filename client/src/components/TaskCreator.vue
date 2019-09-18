@@ -1,13 +1,13 @@
 <template>
-  <div class="list-creator">
-    <form @submit.prevent="addList()" class="form-group">
+  <div class="task-creator">
+    <form @submit.prevent="addTask()" class="form-group">
       <div class="input-group mb-3">
         <input
           type="text"
           class="form-control"
-          placeholder="Create a List"
-          aria-label="Create a List"
-          name="list-name"
+          placeholder="Create a Task"
+          aria-label="Create a Task"
+          name="task-name"
           v-model="title"
         />
         <div class="input-group-append">
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "list-creator",
+  name: "task-creator",
   data() {
     return {
       title: ""
@@ -30,20 +30,24 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
-    },
-    board() {
-      return this.$store.state.activeBoard;
     }
+
+    //FIXME find a way to target a singular list.
+    // list _id is located in the list object AND the Task object
+
+    // list() {
+    //   return this.$store.state. ;
+    // }
   },
   methods: {
-    addList() {
-      let list = {
+    addTask() {
+      let task = {
         title: this.title,
-        boardId: this.board._id,
         authorId: this.user._id
+        //listId:
       };
-      this.$store.dispatch("addList", list);
-      this.list = {};
+      this.$store.dispatch("addTask", task);
+      this.task = {};
     }
   },
   components: {}
