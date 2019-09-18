@@ -94,6 +94,7 @@ export default new Vuex.Store({
 
 
     //#region -- LISTS --
+    // NOTE Make sure that the payload is the boardId of that list.
     async getLists({ commit, dispatch }, payload) {
       // console.log(`/boards/${payload}/lists`);
       try {
@@ -104,9 +105,18 @@ export default new Vuex.Store({
 
     async addList({ commit, dispatch }, payload) {
       try {
-        let res = await api.post('/lists', payload)
-        dispatch('getLists')
+        let res = await api.post('lists', payload)
+        dispatch('getLists', payload.boardId)
       } catch (error) { console.error(error) }
+    },
+    //NOTE Make sure you have the list's _id and the boardId in the payload.
+    async deleteList({ commit, dispatch }, payload) {
+      try {
+        let res = await api.delete('lists/' + payload._id)
+        dispatch("getLists", payload.boardId._id) //NOTE: For future reference, call it what it is.
+      } catch (error) {
+
+      }
     }
 
     //#endregion

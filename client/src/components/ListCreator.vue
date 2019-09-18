@@ -8,8 +8,7 @@
           placeholder="Create a List"
           aria-label="Create a List"
           name="list-name"
-          v-model="newList.title"
-          required
+          v-model="title"
         />
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
@@ -25,14 +24,26 @@ export default {
   name: "list-creator",
   data() {
     return {
-      newList: {}
+      title: ""
     };
   },
-  computed: {},
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    board() {
+      return this.$store.state.activeBoard;
+    }
+  },
   methods: {
     addList() {
-      this.$store.dispatch("addList", this.newList);
-      this.newList = {};
+      let list = {
+        title: this.title,
+        boardId: this.board._id,
+        authorId: this.user._id
+      };
+      this.$store.dispatch("addList", list);
+      this.list = {};
     }
   },
   components: {}
