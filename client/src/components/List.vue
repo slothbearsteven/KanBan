@@ -1,5 +1,5 @@
 <template>
-  <div class="list col-3 our-border">{{listProp.title}}</div>
+  <div class="list col our-border">{{listProp.title}}</div>
 </template>
 
 
@@ -18,7 +18,7 @@ export default {
 
 
 <style scoped>
-.our-border {
+.list {
   border: 1px solid black;
 }
 </style>

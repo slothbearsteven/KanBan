@@ -1,7 +1,10 @@
 <template>
   <div class="board container">
     <div class="row">
-      <div class="col-12 center-text">{{board.title}}</div>
+      <div class="col-12 center-text">
+        <h3>{{board.title}}</h3>
+        <listCreator />
+      </div>
     </div>
     <div class="row d-flex justify-content-around">
       <list v-for="list in lists" :listProp="list" :key="list.id" />
@@ -11,11 +14,13 @@
 
 <script>
 import List from "../components/List";
+import ListCreator from "../components/ListCreator";
 
 export default {
   name: "board",
   components: {
-    List
+    List,
+    ListCreator
   },
   mounted() {
     let boardId = this.$route.params.boardId;
