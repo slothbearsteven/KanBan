@@ -1,15 +1,15 @@
 <template>
-  <div class="comment"></div>
+  <div class="comment">{{commentProp.body}}</div>
 </template>
 
 
 <script>
 export default {
-  name: "comment",
+  name: "Comment",
   data() {
     return {};
   },
-  props: [commentProp],
+  props: ["commentProp"],
   computed: {},
   methods: {},
   components: {}

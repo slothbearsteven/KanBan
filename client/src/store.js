@@ -21,7 +21,8 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: {}
+    tasks: {},
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -38,10 +39,10 @@ export default new Vuex.Store({
     },
     setTasks(state, data) {
       Vue.set(state.tasks, data.listId, data.tasks)
+    },
+    setComments(state, data) {
+      Vue.set(state.comments, data.taskId, data.comments)
     }
-    // setComments(state, data) {
-    //   Vue.set(state.comments, data.taskId, data.comments)
-    // }
 
   },
   actions: {
@@ -168,7 +169,32 @@ export default new Vuex.Store({
         let res = await api.delete('tasks/' + task.taskId)
         dispatch("getTasksByList", task.listId)
       } catch (error) { console.error(error) }
-    }
+    },
     //#endregion
+
+    //#region -- COMMENTSSSSDS--
+
+    async getComments({ commit, dispatch }, taskId) {
+
+      try {
+        let res = await api.get("tasks/" + taskId + "/comments")
+        let data = {
+          taskId,
+          comments: res.data
+        }
+        commit('setComments', data)
+      } catch (error) { console.error(error) }
+    },
+
+    // async getTasksByList({ commit, dispatch }, listId) {
+    //   try {
+    //     let res = await api.get("lists/" + listId + "/tasks")
+    //     let data = {
+    //       listId,
+    //       tasks: res.data
+    //     }
+    //     commit('setTasks', data)
+    //   } catch (error) { console.error(error) }
+    // },
   }
 })
