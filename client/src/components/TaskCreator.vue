@@ -27,6 +27,8 @@ export default {
       title: ""
     };
   },
+  props: ["listProp"],
+
   computed: {
     user() {
       return this.$store.state.user;
@@ -43,7 +45,8 @@ export default {
     addTask() {
       let task = {
         title: this.title,
-        authorId: this.user._id
+        authorId: this.user._id,
+        listId: this.listProp
         //listId:
       };
       this.$store.dispatch("addTask", task);

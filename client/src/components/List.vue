@@ -15,11 +15,11 @@
         </ul>
       </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12">
-        <taskCreator />
+        <taskCreator :listProp="listId" />
       </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -31,7 +31,9 @@ import TaskCreator from "./TaskCreator";
 export default {
   name: "list",
   data() {
-    return {};
+    return {
+      listId: this.listProp._id
+    };
   },
   props: ["listProp"],
   computed: {
