@@ -12,12 +12,14 @@
           aria-haspopup="true"
           aria-expanded="false"
         >Change Lists</button>
-        <!-- NOTE We need to make a loop that populates all lists 
-        in the board that aren't this list-->
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <span
+            v-for="list in lists"
+            :key="list._id"
+            class="dropdown-item"
+            @click="moveTask(list._id)"
+          >{{list.title}}</span>
         </div>
       </div>
     </li>
@@ -35,6 +37,12 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    lists() {
+      return this.$store.state.lists;
+    },
+    board() {
+      return this.$store.state.activeBoard;
     }
   },
   methods: {
@@ -46,11 +54,17 @@ export default {
         taskId: this.taskProp._id
       };
       this.$store.dispatch("deleteTask", task);
+    },
+
+    moveTask(newListId) {
+      // console.log(task, newListId);
+      let payload = {
+        task: this.taskProp,
+        newListId: newListId,
+        oldList: this.taskProp.listId
+      };
+      this.$store.dispatch("moveTask", payload);
     }
-    // We need to pass this list's listId into the state delete method
-    // deleteList(list) {
-    //   this.$store.dispatch("deleteList", list);
-    // }
   },
   components: {}
 };
