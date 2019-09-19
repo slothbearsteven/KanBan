@@ -22,9 +22,9 @@
             <div class="modal-body">
               <comment v-for="comment in comments" :commentProp="comment" :key="comment._id" />
             </div>
+            <comment-creator />
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -57,6 +57,7 @@
 
 <script>
 import Comment from "./Comment";
+import CommentCreator from "./CommentCreator";
 export default {
   name: "task",
   data() {
@@ -99,7 +100,7 @@ export default {
       this.$store.dispatch("moveTask", payload);
     }
   },
-  components: { Comment },
+  components: { Comment, CommentCreator },
   mounted() {
     let taskId = this.taskProp._id;
     this.$store.dispatch("getComments", taskId);

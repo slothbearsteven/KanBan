@@ -1,14 +1,14 @@
 <template>
-  <div class="task-creator">
-    <form @submit.prevent="addTask()" class="form-group">
+  <div class="comment-creator">
+    <form @submit.prevent="addComment()" class="form-group">
       <div class="input-group mb-3">
         <input
           type="text"
           class="form-control"
-          placeholder="Create a Task"
-          aria-label="Create a Task"
-          name="task-name"
-          v-model="title"
+          placeholder="Create a Comment"
+          aria-label="Create a Comment"
+          name="comment-name"
+          v-model="body"
         />
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
@@ -21,13 +21,13 @@
 
 <script>
 export default {
-  name: "task-creator",
+  name: "comment-creator",
   data() {
     return {
-      title: ""
+      body: ""
     };
   },
-  props: ["listProp"],
+  props: ["taskProp"],
 
   computed: {
     user() {
@@ -35,15 +35,15 @@ export default {
     }
   },
   methods: {
-    addTask() {
-      let task = {
-        title: this.title,
+    addComment() {
+      let comment = {
+        body: this.body,
         authorId: this.user._id,
-        listId: this.listProp
-        //listId:
+        taskId: this.taskProp
+        //taskId:
       };
-      this.$store.dispatch("addTask", task);
-      this.task = {};
+      this.$store.dispatch("addComment", comment);
+      this.comment = {};
     }
   },
   components: {}
