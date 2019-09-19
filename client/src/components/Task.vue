@@ -1,5 +1,7 @@
 <template>
-  <div class="task">{{taskProp.title}}</div>
+  <div class="task">
+    <li>{{taskProp.title}}</li>
+  </div>
 </template>
 
 
@@ -9,7 +11,7 @@ export default {
   data() {
     return {};
   },
-  props: [taskProp],
+  props: ["taskProp"],
   computed: {},
   methods: {
     // We need to pass this list's listId into the state delete method
@@ -23,4 +25,7 @@ export default {
 
 
 <style scoped>
+/* .task {
+  padding-left: 15px;
+} */
 </style>
