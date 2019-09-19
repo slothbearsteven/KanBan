@@ -3,6 +3,23 @@
     <li>
       {{taskProp.title}}
       <span class="badge badge-danger" @click="deleteTask(taskProp)">X</span>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >Change Lists</button>
+        <!-- NOTE We need to make a loop that populates all lists 
+        in the board that aren't this list-->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
     </li>
   </div>
 </template>
