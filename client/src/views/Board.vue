@@ -1,13 +1,20 @@
 <template>
-  <div class="board container">
-    <div class="row">
-      <div class="col-12 center-text">
-        <h3>{{board.title}}</h3>
-        <listCreator />
+  <div class="board">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 center-text">
+          <h3>{{board.title}}</h3>
+          <listCreator />
+        </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-around">
-      <list v-for="list in lists" :listProp="list" :key="list.id" />
+    <div class="grid-container">
+      <list
+        v-for="(list, index) in lists"
+        :listProp="list"
+        :key="list.id"
+        v-bind:style="{'grid-column-start': index+1}"
+      />
     </div>
   </div>
 </template>
@@ -46,3 +53,12 @@ export default {
   props: ["boardId"]
 };
 </script>
+
+<style scoped>
+.grid-container {
+  overflow-x: auto;
+  display: grid;
+  grid-template-columns: 400px;
+  grid-column-gap: 15px;
+}
+</style>

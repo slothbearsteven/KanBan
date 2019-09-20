@@ -62,7 +62,8 @@ export default {
 
 <style >
 .list {
-  max-width: 300px;
+  max-width: 400px;
+  min-width: 400px;
   margin-right: 7.5px;
   margin-left: 7.5px;
   margin-top: 7.5px;
