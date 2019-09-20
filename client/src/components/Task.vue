@@ -22,7 +22,7 @@
             <div class="modal-body">
               <comment v-for="comment in comments" :commentProp="comment" :key="comment._id" />
             </div>
-            <comment-creator />
+            <comment-creator :taskProp="taskProp" />
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

@@ -172,7 +172,7 @@ export default new Vuex.Store({
     },
     //#endregion
 
-    //#region -- COMMENTSSSSDS--
+    //#region -- COMMENTS --
 
     async getComments({ commit, dispatch }, taskId) {
 
@@ -185,6 +185,12 @@ export default new Vuex.Store({
         commit('setComments', data)
       } catch (error) { console.error(error) }
     },
+    async addComment({ commit, dispatch }, comment) {
+      try {
+        let res = await api.post('comments', comment)
+        dispatch('getComments', comment.taskId)
+      } catch (error) { console.error(error) }
+    }
 
     // async getTasksByList({ commit, dispatch }, listId) {
     //   try {
@@ -196,5 +202,6 @@ export default new Vuex.Store({
     //     commit('setTasks', data)
     //   } catch (error) { console.error(error) }
     // },
+    //#endregion
   }
 })

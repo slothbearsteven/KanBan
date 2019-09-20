@@ -39,7 +39,7 @@ export default {
       let comment = {
         body: this.body,
         authorId: this.user._id,
-        taskId: this.taskProp
+        taskId: this.taskProp._id
         //taskId:
       };
       this.$store.dispatch("addComment", comment);
