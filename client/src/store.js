@@ -190,6 +190,12 @@ export default new Vuex.Store({
         let res = await api.post('comments', comment)
         dispatch('getComments', comment.taskId)
       } catch (error) { console.error(error) }
+    },
+    async deleteComment({ commit, dispatch }, comment) {
+      try {
+        await api.delete('comments/' + comment._id)
+        dispatch("getComments", comment.taskId._id)
+      } catch (error) { console.error(error) }
     }
 
     // async getTasksByList({ commit, dispatch }, listId) {

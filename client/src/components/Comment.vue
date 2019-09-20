@@ -1,5 +1,8 @@
 <template>
-  <div class="comment">{{commentProp.body}}</div>
+  <div class="comment">
+    {{commentProp.body}}
+    <span class="badge badge-danger" @click="deleteComment()">X</span>
+  </div>
 </template>
 
 
@@ -11,7 +14,12 @@ export default {
   },
   props: ["commentProp"],
   computed: {},
-  methods: {},
+  methods: {
+    deleteComment() {
+      let comment = this.commentProp;
+      this.$store.dispatch("deleteComment", comment);
+    }
+  },
   components: {}
 };
 </script>
