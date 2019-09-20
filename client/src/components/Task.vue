@@ -31,6 +31,7 @@
       </div>
 
       <span class="badge badge-danger" @click="deleteTask(taskProp)">X</span>
+
       <div class="dropdown">
         <button
           class="btn btn-secondary dropdown-toggle"

@@ -25,6 +25,14 @@ export default new Vuex.Store({
     comments: {}
   },
   mutations: {
+    resetState(state) {
+      state.user = {}
+      state.boards = []
+      state.activeBoard = {}
+      state.lists = []
+      state.tasks = {}
+      state.comments = {}
+    },
     setUser(state, user) {
       state.user = user
     },
@@ -99,6 +107,14 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
+    async deleteBoard({ commit, dispatch }, boardId) {
+      try {
+        api.delete('boards/' + boardId)
+        dispatch('getBoards')
+      } catch (error) {
+        console.error(error)
+      }
+    },
     //#endregion
 
 
@@ -154,7 +170,6 @@ export default new Vuex.Store({
 
       try {
         await api.put('tasks/' + task._id, { listId: newListId })
-        debugger
         dispatch("getTasksByList", newListId)
         dispatch("getTasksByList", payload.oldList._id)
         // dispatch("getLists", boardId)
