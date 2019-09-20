@@ -1,7 +1,7 @@
 <template>
-  <div class="list col border rounded-0">
+  <div class="list col-4 border rounded-0">
     <div class="row d-flex justify-content-between">
-      <div class="col-auto">
+      <div class="col">
         <h5>{{listProp.title}}</h5>
       </div>
       <h5 class="col text-right">
@@ -9,7 +9,7 @@
       </h5>
     </div>
     <div class="row">
-      <div class="col-">
+      <div class="col">
         <ul>
           <task v-for="task in tasks" :taskProp="task" :key="task._id" />
         </ul>
@@ -60,11 +60,15 @@ export default {
 </script>
 
 
-<style scoped>
+<style >
 .list {
   max-width: 300px;
   margin-right: 7.5px;
   margin-left: 7.5px;
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+  background-image: url(https://i.imgur.com/3VQDeKc.png);
+  background-size: contain;
 }
 .list h5 {
   padding-top: 10px;

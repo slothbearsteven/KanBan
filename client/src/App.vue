@@ -2,9 +2,9 @@
   <div id="app">
     <div id="nav">
       <router-link to="/boards">
-        <button class="btn btn-info">Boards</button>
+        <button class="btn btn-info bg">Boards</button>
       </router-link>
-      <button class="btn btn-danger" @click="logout()">Logout</button>
+      <button class="btn btn-danger bg" @click="logout()">Logout</button>
     </div>
     <router-view />
   </div>
