@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <button class="btn btn-danger" @click="logout()">Logout</button>
       <router-link to="/boards">
         <button class="btn btn-info">Boards</button>
       </router-link>
+      <button class="btn btn-danger" @click="logout()">Logout</button>
     </div>
     <router-view />
   </div>
@@ -41,5 +41,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.btn {
+  padding: 5px;
 }
 </style>
